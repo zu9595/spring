@@ -6,13 +6,10 @@
 </head>
 <body>
 	<h2>커맨트객체</h2>
-		<br>hireDate<input name="hireDate">
-		<br>jobId<select name="jobId" >
-			<option value="IT_PROG">Programmer</option>
-			<option value="ST_MAN">Stock Manager</option>
-		</select>
-		<br>이메일<p></p>
-		<br>첨부파일<p></p>
+		<br>hireDate<p>[[${emp.hireDate}]]</p>
+		<br>jobId<p>[[${emp.jobId}]]</p>
+		<br>이메일<p>[[${emp.email}]]</p>
+		<br>첨부파일<p>[[${emp.photo}]]</p>
 		<button>수정</button>
 		<button>삭제</button>
 </body>

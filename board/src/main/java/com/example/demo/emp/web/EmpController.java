@@ -51,20 +51,25 @@ public class EmpController {
 	}
 
 	// 수정페이지 이동
-	@GetMapping("/emp/update")
-	public String update(int eid) {
-		mapper.getEmpInfo(eid);
-		return "redirect:/emp/list";
+	@GetMapping("/emp/update/{employeeId}")
+	public String update(Model model, int employeeId) {
+		model.addAttribute("upInfo", mapper.getEmpInfo(employeeId));
+		return "emp/update";
 	}
 
 	// 수정처리
 
 	// 삭제처리
-
+	@GetMapping("/emp/delete/{employeeId}")
+	public String delete(int employeeId) {
+		mapper.deleteEmp(employeeId);
+		return "redirect:/emp/list";
+	};
 	// 상세조회 페이지 이동
-	@GetMapping("/emp/info")
-	public String info(int eid) {
-		mapper.getEmpInfo(eid);
+	@GetMapping("/emp/info/{employeeId}")
+	public String info(Model model, int employeeId) {
+		model.addAttribute("empInfo", mapper.getEmpInfo(employeeId));
+		return "emp/info";
 	}
 	// 목록페이지로 이동
 	@RequestMapping("/emp/list")
