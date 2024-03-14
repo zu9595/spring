@@ -6,19 +6,19 @@
 	<sql id="condition">
 		<where>
 			<if test="vo.title != null">
-				title LIKE '%#{vo.title}%'
+				title = #{vo.title}
 			</if>
 			<if test="vo.content != null">
-				content LIKE '%#{vo.content}%'
+				content = #{vo.content}
 			</if>
 			<if test="vo.writer != null">
-				writer LIKE '%#{vo.writer}%'
+				writer = #{vo.writer}
 			</if>
 		</where>
 	</sql>
 
 
-	<select id="getBoardList" parameterType="BoardVO" resultType="BoardVO">
+	<select id="getBoardList" resultType="BoardVO">
 		select * from( select rownum AS rn, a.* from (
 
 		SELECT board_no
@@ -94,13 +94,15 @@
 		<if test="writer != null">
 			writer = #{writer}
 		</if>
+		<if test="boardNo != null">
+			WHERE board_no = #{boardNo}
+		</if>
 	</sql>
 
 	<update id="updateBoard" parameterType="BoardVO">
 		UPDATE board
 		SET
 		<include refid="updated"></include>
-		WHERE board_no = #{boardNo}
 	</update>
 
 </mapper>

@@ -14,13 +14,13 @@ public class BoardMapperTest {
 	@Autowired
 	BoardMapper mapper;
 
-//	@Test
+	@Test
 	public void 게시글목록() {
 		BoardVO vo = new BoardVO();
 		PageVO pvo = new PageVO();
-//		vo.setTitle("첫번째 글");
-//		vo.setContent("불코딩하자");
-		vo.setWriter("최승민");
+//		vo.setTitle("첫");
+		vo.setContent("코딩");
+//		vo.setWriter("최승민");
 		List<BoardVO> list = mapper.getBoardList(vo, pvo);
 		for(BoardVO board : list) {
 			System.out.println("제목 : "+board.getTitle());
@@ -53,12 +53,12 @@ public class BoardMapperTest {
 		vo.setContent("야호");
 //		vo.setTitle("하하하");
 //		vo.setWriter("xxx");
-		vo.setBoardNo(41);
+		vo.setBoardNo(1);
 		int cnt = mapper.updateBoard(vo);
-//		System.out.println("수정 부분 : "+vo);
+		System.out.println("수정 부분 : "+vo);
 		System.out.println("수정됨 "+cnt);
 	}
-	@Test
+//	@Test
 	public void 게시글삭제() {
 		int boardNo = 41;
 		int cnt = mapper.deleteBoard(boardNo);

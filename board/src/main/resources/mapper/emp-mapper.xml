@@ -73,7 +73,8 @@
 			,SALARY
 		</if>
 		,MANAGER_ID
-		,DEPARTMENT_ID)
+		,DEPARTMENT_ID
+		,PHOTO)
 		values(
 		#{employeeId}
 		,#{firstName}
@@ -86,6 +87,7 @@
 		</if>
 		,#{managerId}
 		,#{departmentId}
+		,#{photo}
 		)
 	</insert>
 
