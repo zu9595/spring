@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.emp.EmpVO;
+import com.example.demo.emp.SearchVO;
 import com.example.demo.emp.mapper.EmpMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -79,9 +81,22 @@ public class EmpController {
 		return "index";
 	}
 
-	@RequestMapping("/empList")
-	public String empList(Model model) { // Model :
-		model.addAttribute("empList", mapper.getEmpList(null, null)); // DB 쿼리문 실행
-		return "empList";
+	@GetMapping("/update/{empId}")
+	public String update(@PathVariable int empId) {
+		System.out.println(empId);
+		return "index";
+	}
+
+	@GetMapping("/delete")
+	public String delete(int employeeId, String name) {
+		System.out.println(employeeId + ":" + name);
+		return "index";
+	}
+
+	@RequestMapping("/empList") // 를 요청받으면
+	public String empList(Model model, EmpVO vo, SearchVO svo) { // Model : view쪽에 쿼리결과를 담아 보낼때
+		model.addAttribute("companyName", "<i><font color='red'>예담주식회사</font></i>");
+		model.addAttribute("empList", mapper.getEmpList(vo, svo)); // DB 쿼리문을 실행하고 그 값을 view쪽에 키워딩으로 보냄
+		return "empList"; // 로 이동
 	}
 }

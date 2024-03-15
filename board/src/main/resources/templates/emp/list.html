@@ -11,7 +11,7 @@
 			<th>first_name</th>
 			<th>last_name</th>
 		</tr>
-		<tr th:each="emp : ${empList}" onclick="goToInfo(event.target)">
+		<tr th:each="emp : ${empList}" th:onclick="goToInfo([[${emp.employeeId}]])">
 			<td th:text="${emp.employeeId}"></td>
 			<td th:text="${emp.firstName}"></td>
 			<td th:text="${emp.lastName}"></td>
@@ -19,9 +19,9 @@
 		</tr>
 	</table>
 	<script>
-		function goToInfo(){
-			
-		}
+	function goToInfo(id){
+		location.href='/emp/info/'+id;
+	}
 	</script>
 </body>
 </html>
