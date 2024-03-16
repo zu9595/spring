@@ -44,7 +44,7 @@
 		,DEPARTMENT_ID
 		FROM employees e
 		<include refid="condition"></include>
-		ORDER BY first_name
+		ORDER BY last_name
 		
 <![CDATA[
 	) a where rownum <= #{svo.end} ) b where rn >= #{svo.start}

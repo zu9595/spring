@@ -6,16 +6,19 @@ import java.util.List;
 
 import javax.websocket.server.PathParam;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -55,14 +58,24 @@ public class EmpController {
 	}
 
 	// 수정페이지 이동
-	@GetMapping("/emp/update")
+	@GetMapping("/emp/update/{eId}")
 	public String update(Model model, @PathVariable int eId) {
 		model.addAttribute("upInfo", mapper.getEmpInfo(eId));
 		return "emp/update";
 	}
 
 	// 수정처리
-
+	@PutMapping("/update")
+	public String update(EmpVO vo, MultipartFile photoFile) throws IllegalStateException, IOException {
+		if(photoFile != null && photoFile.getSize() > 0 ) {
+			vo.setPhoto(photoFile.getOriginalFilename());
+			photoFile.transferTo(new File("d:/upload", photoFile.getOriginalFilename()));
+		}
+//		mapper.updateEmp(vo);
+		System.out.println("수정: " + vo);
+		return "redirect:/emp/list";
+	}
+	
 	// 삭제처리
 	@GetMapping("/emp/delete/{eId}")
 	public String delete(@PathVariable int eId) {

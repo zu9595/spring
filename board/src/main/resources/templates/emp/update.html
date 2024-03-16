@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -7,13 +7,13 @@
 <body>
 	<h2>커맨트객체</h2>
 	<form action="/update" method="post" enctype="multipart/form-data">
-		<br>lastName<input name="lastName">
-		<br>hireDate<input name="hireDate">
-		<br>jobId<select name="jobId" >
-			<option value="IT_PROG">Programmer</option>
+		<br>lastName<input name="lastName" th:value="${upInfo.lastName}">
+		<br>hireDate<input name="hireDate" th:value="${upInfo.hireDate}">
+		<br>jobId<select name="jobId">
+			<option th:value="${upInfo.jobId}">[[${upInfo.jobId}]]</option>
 			<option value="ST_MAN">Stock Manager</option>
 		</select>
-		<br>이메일<input name="email">
+		<br>이메일<input name="email" th:value="${upInfo.email}">
 		<br>첨부파일<input type="file" name="photoFile">
 		<button>등록</button>
 	</form>

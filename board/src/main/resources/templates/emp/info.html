@@ -10,9 +10,16 @@
 		<br>jobId<p>[[${empInfo.jobId}]]</p>
 		<br>이메일<p>[[${empInfo.email}]]</p>
 		<br>첨부파일<p>[[${empInfo.photo}]]</p>
-		<button th:onclick="@{/emp/update(eId=${empInfo.employeeId})}">수정</button>
-		<button>삭제</button>
-		<script></script>
+		<button th:onclick="updated([[${empInfo.employeeId}]])">수정</button>
+		<button th:onclick="deleted([[${empInfo.employeeId}]])">삭제</button>
+		<script>
+		function deleted(id){
+			location.href='/emp/delete/'+id;
+		}
+		function updated(id){
+			location.href='/emp/update/'+id;
+		}
+		</script>
 </body>
 
 </html>
