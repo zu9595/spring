@@ -15,4 +15,7 @@ public interface EmpMapper {
 	int insertEmp(EmpVO empVO);
 	int deleteEmp(int employeeId);
 	List<Map<String, Object>> getStat();
+	
+	//@Select("select count(*) from employees")
+	public long getCount();
 }

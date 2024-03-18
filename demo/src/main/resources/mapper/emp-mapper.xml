@@ -7,8 +7,8 @@
 			<if test="vo.departmentId != null">
 				department_id = #{vo.departmentId}
 			</if>
-			<if test="vo.firstName != null">
-				AND first_name = #{vo.firstName}
+			<if test="vo.firstName != null and vo.firstName != ''">
+				AND first_name like '%' || #{vo.firstName} || '%'
 			</if>
 			<if test="vo.managerId != null">
 				AND manager_id = #{vo.managerId}
@@ -28,6 +28,11 @@
 		<result property="phone" column="phone"/>
 	</resultMap>
 	
+	<select id="getCount" resultType="long">
+		select count(*)
+		from employees
+		<include refid="condition"></include>
+	</select>
 	<select id="getEmpList" resultMap="empResultMap">
 		select * from( select rownum AS rn, a.* from (
 
@@ -56,7 +61,7 @@
 		from employees
 		where employee_id = #{employeeId}
 	</select>
-
+	
 	<insert id="insertEmp" parameterType="EmpVO">
 		<selectKey keyProperty="employeeId" order="BEFORE"
 			resultType="int">

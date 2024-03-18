@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h3>댓글 목록</h3>
+		<table>
+			<thead>
+				<tr>
+					<th>댓글번호</th>
+					<th>내용</th>
+					<th>작성자</th>
+					<th>등록 날짜</th>
+					<th>수정 날짜</th>
+				</tr>
+			</thead>
+			<tbody id="replyList">
+			
+			</tbody>
+		</table>
+		<form method="post" name="frm">
+			boardno<input name="bno"> reply<input name="reply">
+			replyer<input name="replyer">
+			<button type="button" onclick="saveReply()">등록</button>
+		</form>
+		<script>
+	function saveReply(){
+		let param = new FormData(document.frm);
+		fetch("/replies/insert",{
+			method : "post",
+			body : param
+		})
+		.then(res => res.json())
+		.then(res => console.log(res))
+		
+	}
+	function 
+	</script>
+	</div>
+</body>
+</html>

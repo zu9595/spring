@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.demo.common.Paging;
 import com.example.demo.emp.EmpVO;
 import com.example.demo.emp.SearchVO;
 import com.example.demo.emp.mapper.EmpMapper;
@@ -81,6 +82,12 @@ public class EmpController {
 		return "index";
 	}
 
+	@GetMapping("/info/{empId}")
+	public String info(@PathVariable int empId, Model model) {
+		model.addAttribute("emp", mapper.getEmpInfo(empId));
+		return "empInfo";
+	}
+	
 	@GetMapping("/update/{empId}")
 	public String update(@PathVariable int empId) {
 		System.out.println(empId);
@@ -94,8 +101,17 @@ public class EmpController {
 	}
 
 	@RequestMapping("/empList") // 를 요청받으면
-	public String empList(Model model, EmpVO vo, SearchVO svo) { // Model : view쪽에 쿼리결과를 담아 보낼때
-		model.addAttribute("companyName", "<i><font color='red'>예담주식회사</font></i>");
+	public String empList(Model model, EmpVO vo, SearchVO svo, Paging pvo) { // Model : view쪽에 쿼리결과를 담아 보낼때
+		
+		//페이징처리
+		pvo.setPageUnit(5); //데이터 수
+		pvo.setPageSize(3);
+		svo.setStart(pvo.getFirst());
+		svo.setEnd(pvo.getLast());
+		pvo.setTotalRecord(mapper.getCount());
+		model.addAttribute("paging", pvo);
+		
+		//목록조회
 		model.addAttribute("empList", mapper.getEmpList(vo, svo)); // DB 쿼리문을 실행하고 그 값을 view쪽에 키워딩으로 보냄
 		return "empList"; // 로 이동
 	}
