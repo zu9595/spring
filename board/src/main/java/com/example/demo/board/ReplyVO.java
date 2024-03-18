@@ -20,6 +20,8 @@ public class ReplyVO {
 	private	String replyer;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	private	Date replyDate;
-	private Date updateDate;
+	private	Date replydate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private Date updatedate;
 }

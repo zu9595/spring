@@ -3,17 +3,18 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.board.mapper.ReplyMapper">
 
-	<select id="getReplyList" parameterType="ReplyVO" resultType="ReplyVO">
+	<select id="getReplyList" resultType="ReplyVO">
 		select * from( select rownum AS rn, a.* from (
 
 		SELECT *
 		FROM tbl_reply
-		where bno = #{vo.bno}
+		where bno = #{bdno}
 		
 <![CDATA[
 	) a where rownum <= #{pvo.end} ) b where rn >= #{pvo.start}
 ]]>
 	</select>
+	
 	<insert id="addReply">
 		insert into tbl_reply (rno, bno, reply, replyer)
 		values(seq_reply.nextval, #{bno}, #{reply}, #{replyer})

@@ -1,46 +1,62 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/layout}">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-	<div layout:fragment="content">
-		<h3>댓글 목록</h3>
-		<table>
-			<thead>
-				<tr>
-					<th>댓글번호</th>
-					<th>내용</th>
-					<th>작성자</th>
-					<th>등록 날짜</th>
-					<th>수정 날짜</th>
-				</tr>
-			</thead>
-			<tbody id="replyList">
-			
-			</tbody>
-		</table>
-		<form method="post" name="frm">
-			boardno<input name="bno"> reply<input name="reply">
-			replyer<input name="replyer">
-			<button type="button" onclick="saveReply()">등록</button>
-		</form>
-		<script>
-	function saveReply(){
+	<h3>댓글 목록</h3>
+	<table>
+		<thead>
+			<tr>
+				<th>댓글번호</th>
+				<th>내용</th>
+				<th>작성자</th>
+				<th>등록날짜</th>
+				<th>수정날짜</th>
+			</tr>
+		</thead>
+		<tbody id="replyList">
+
+		</tbody>
+	</table>
+	<form method="post" name="frm">
+		boardno<input name="bno" value="1"> reply<input name="reply">
+		replyer<input name="replyer">
+		<button type="button" onclick="saveReply()">등록</button>
+	</form>
+	<script>
+		getRepList(frm.bno.value);
+	async function saveReply(){
 		let param = new FormData(document.frm);
-		fetch("/replies/insert",{
+		await fetch("/replies/insert",{
 			method : "post",
 			body : param
 		})
 		.then(res => res.json())
 		.then(res => console.log(res))
-		
+		getRepList(frm.bno.value);
 	}
-	function 
+	function getRepList(bno){
+		fetch(`/replies/${bno}`)
+		.then(res => res.json())
+		.then(res => makeList(res))
+	}
+	function makeList(json){
+		replyList.innerHTML = '';
+		json.forEach((data, index) => {
+			
+		let newTag = `<tr>
+			<td>${index}</td>
+			<td>${data.reply}</td>
+			<td>${data.replyer}</td>
+			<td>${data.replydate}</td>
+			<td>${data.updatedate}</td>
+			<td><button type="button">조회</button></td>
+		</tr>`
+		replyList.innerHTML += newTag;
+		})
+	}
 	</script>
-	</div>
 </body>
 </html>

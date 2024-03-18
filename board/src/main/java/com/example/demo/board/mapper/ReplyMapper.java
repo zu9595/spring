@@ -10,5 +10,5 @@ import com.example.demo.board.ReplyVO;
 @Mapper
 public interface ReplyMapper {
 	int addReply(ReplyVO vo);
-	List<ReplyVO> getReplyList(ReplyVO vo, PageVO pvo);
+	List<ReplyVO> getReplyList(ReplyVO vo, PageVO pvo, int bdno);
 }
