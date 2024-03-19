@@ -28,22 +28,23 @@
 	<script>
 	boardList();
 		function boardList(){
-			axios.get("/boards")
-			.then(res => makeBlist(res.data))
+			fetch("/boards/")
+			.then(res => res.json())
+			.then(res => makeBlist(res))
 		}
-		function makeBlist(data){
+		function makeBlist(json){
 			brdList.innerHTML = '';
-			json.forEach((json, index) => {
+			json.forEach((data, index) => {
 				
 			let newTag = `<tr>
 				<td>${index}</td>
-				<td>${json.title}</td>
-				<td>${json.content}</td>
-				<td>${json.writer}</td>
+				<td>${data.title}</td>
+				<td>${data.content}</td>
+				<td>${data.writer}</td>
 				<td><button type="button">조회</button></td>
 			</tr>`
 			brdList.innerHTML += newTag;
-			}
+			})
 		}
 	</script>
 </body>

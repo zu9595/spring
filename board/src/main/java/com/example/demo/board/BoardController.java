@@ -30,10 +30,10 @@ public class BoardController {
 	}
 	
 	
-	@PostMapping("/insert")
-	public BoardVO insert(BoardVO vo) {
-		System.out.println(vo);
-		mapper.addBoard(vo);
-		return vo;
-	}
+//	@PostMapping("/insert")
+//	public BoardVO insert(BoardVO vo) {
+//		System.out.println(vo);
+//		mapper.addBoard(vo);
+//		return vo;
+//	}
 }
