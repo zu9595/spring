@@ -6,13 +6,13 @@
 	<sql id="condition">
 		<where>
 			<if test="vo.title != null">
-				title LIKE '%#{vo.title}%'
+				title LIKE '%' || #{vo.title} || '%'
 			</if>
 			<if test="vo.content != null">
-				content LIKE '%#{vo.content}%'
+				content LIKE '%' || #{vo.content} || '%'
 			</if>
 			<if test="vo.writer != null">
-				writer LIKE '%#{vo.writer}%'
+				writer LIKE '%' || #{vo.writer} || '%'
 			</if>
 		</where>
 	</sql>

@@ -4,18 +4,20 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import com.example.demo.emp.EmpVO;
 import com.example.demo.emp.SearchVO;
 
 @Mapper
 public interface EmpMapper {
-	List<EmpVO> getEmpList(EmpVO vo, SearchVO svo); // EmpController에서 요청을 받으면 emp-mapper.xml에서 id=getEmpList 실행
+	List<EmpVO> getEmpList(EmpVO vo, SearchVO svo);
 	EmpVO getEmpInfo(int employeeId);
 	int insertEmp(EmpVO empVO);
 	int deleteEmp(int employeeId);
-	List<Map<String, Object>> getStat();
+	List<Map<String,Object>> getStat();
 	
 	//@Select("select count(*) from employees")
-	public long getCount();
+	public long getCount(EmpVO vo, SearchVO svo);
 }

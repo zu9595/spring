@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h3>게시판 목록</h3>
+	<table>
+		<thead>
+			<tr>
+				<th>글번호</th>
+				<th>제목</th>
+				<th>내용</th>
+				<th>작성자</th>
+			</tr>
+		</thead>
+		<tbody id="brdList">
+	<!-- 	int boardNo;
+	String title;
+	String content;
+	String writer;
+	Date writerDate;
+	int clickCnt;
+	String image; -->
+		</tbody>
+	</table>
+	<script>
+	boardList();
+		function boardList(){
+			axios.get("/boards")
+			.then(res => makeBlist(res.data))
+		}
+		function makeBlist(data){
+			brdList.innerHTML = '';
+			json.forEach((json, index) => {
+				
+			let newTag = `<tr>
+				<td>${index}</td>
+				<td>${json.title}</td>
+				<td>${json.content}</td>
+				<td>${json.writer}</td>
+				<td><button type="button">조회</button></td>
+			</tr>`
+			brdList.innerHTML += newTag;
+			}
+		}
+	</script>
+</body>
+</html>

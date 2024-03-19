@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class EX1VO {
-	private String userName;
-	private String passWord;
+	private String username;
+	private String password;
 	private List<String> hobby;
 }

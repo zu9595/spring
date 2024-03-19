@@ -14,16 +14,16 @@ public class DITest {
 
 	@Autowired
 	private Restaurant restaurant;
-
-	@Setter(onMethod_ = { @Autowired })
+	
+	@Setter(onMethod_ = {@Autowired } )
 	private Restaurant restaurant1;
-
+	
 	@Test
 	public void 스코프비교() {
-		assertThat(restaurant == restaurant1).isTrue();
+		assertThat(restaurant==restaurant1).isTrue();
 	}
-
-//	@Test
+	
+	//@Test
 	public void test() {
 		assertThat(restaurant.getChef()).isNotNull();
 	}

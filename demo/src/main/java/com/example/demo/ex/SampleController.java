@@ -8,20 +8,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SampleController {
 
-	@GetMapping(value = "/getText", produces = "application/json;charset=UTF-8")
+	@GetMapping(value = "/getText", produces = "application/json;charset=UTF-8" )
 	public String getText() {
-		return "{\"greet\":\"안녕하세요\"}"; // {"greet":"안녕하세요"}
+		return   "sasssZ"; //"[{\"greet\":\"안녕하세요\"}";  //{"greet":"안녕하세요"}
 	}
-
+	
 	@GetMapping("/check")
-	public ResponseEntity<SampleVO> check(Double height, Double weight) {
-		SampleVO vo = new SampleVO(0, ""+height, ""+weight);
-		ResponseEntity<SampleVO> result = null;
+	public ResponseEntity<SampleVO> check(Double height, Double weight){
+		SampleVO vo = new SampleVO(0, ""+height, ""+weight );
+		ResponseEntity<SampleVO> result =  null;
 		if(height > 150) {
-			result = ResponseEntity.status(HttpStatus.OK).body(vo);
+			result =  ResponseEntity.status(HttpStatus.OK).body(vo);
 		} else {
-			result = new ResponseEntity<>(vo, HttpStatus.BAD_GATEWAY);
+			result =  new ResponseEntity<>(vo, HttpStatus.BAD_GATEWAY);
 		}
-		return result;
+		return result;	
 	}
 }

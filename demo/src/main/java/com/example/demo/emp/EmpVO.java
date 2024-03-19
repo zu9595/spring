@@ -14,24 +14,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class EmpVO {
 	int employeeId;
 	String firstName;
 	String lastName;
 	String email;
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm") //입력 string -> Date
-	@JsonFormat(pattern = "yyyy-MM-dd") //출력 Date -> string
+	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")   //입력 string -> Date
+	@JsonFormat(pattern = "yyyy-MM-dd")             //출력 Date -> string      
 	Date hireDate;
 	Integer salary;
 	String jobId;
-	@JsonProperty(value = "deptId")String departmentId;
+	@JsonProperty(value = "deptId") String departmentId;
 	@JsonIgnore String managerId;
 	@JsonIgnore String phone;
-//	int start = 1;
-//	int end = 10;
-//	
-//	int[] employeeIds;
 }
