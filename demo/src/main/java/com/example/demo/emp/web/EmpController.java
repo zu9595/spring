@@ -62,16 +62,20 @@ public class EmpController {
 		return new ResponseEntity<>(vo, HttpStatus.OK);
 	}
 	
+	@GetMapping("/insert")
+	public void insert() {
+		
+	}
 	@PostMapping("/insert")
 	public ModelAndView insert(@ModelAttribute("emp") EmpVO vo) {
 		System.out.println(vo);
-		//mapper.insertEmp(vo);
+		empService.insertEmp(vo);
 		//커맨드객체는 model에 추가
 			
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("result");
+		mv.setViewName("home");
 		mv.addObject("insertResult", "success");
-		mv.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+//		mv.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
 		return mv;
 	}
 	

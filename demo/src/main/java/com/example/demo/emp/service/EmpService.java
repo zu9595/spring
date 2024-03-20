@@ -3,7 +3,6 @@ package com.example.demo.emp.service;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Mapper;
 
 import com.example.demo.emp.EmpVO;
 import com.example.demo.emp.SearchVO;

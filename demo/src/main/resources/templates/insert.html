@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>사원등록</h2>
+	<form action="/insert" method="post">
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+		<br>lastName<input name="lastName">
+		<br>hireDate<input name="hireDate">
+		<br>jobId<select name="jobId" >
+			<option value="IT_PROG">Programmer</option>
+			<option value="ST_MAN">Stock Manager</option>
+		</select>
+		<br>이메일<input name="email">
+		<br>첨부파일<input type="file" name="photoFile">
+		<button>등록</button>
+	</form>
+</body>
+
+</html>
